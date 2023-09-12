@@ -31,5 +31,7 @@ Route::get('/update-etudiant/{id}',[EtudiantController::class,'updateEtudiant'])
 
  Route::post('/update-etudiant/verification',[EtudiantController::class,'verification_update'])
           ->name('updateVerifier');
+Route::get('/delete-etudiant/{id}',[EtudiantController::class,'DeleteEtudiant'])
+          ->name('Delete');         
           
 
