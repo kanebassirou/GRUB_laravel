@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col s12">
-            <h1>ajouter etudiants avec laravel 10</h1>
+            <h1>Modifier etudiants avec laravel 10</h1>
             <hr>
             @if (session('status'))
             <div class="alert alert-success">
@@ -37,7 +37,7 @@
                   <input type="text" class="form-control" id="niveau" name="niveau" value="{{$etudiants->niveau}}">
                 </div>
               
-                <button type="submit" class="btn btn-primary">Modifier un etudiant</button>
+                <button type="submit" class="btn btn-success">Modifier un etudiant</button>
                 <br><br>
                 <a href="{{route('Liste')}}" class="btn btn-danger">Revenir sur la liste des etudiant</a>
               </form>

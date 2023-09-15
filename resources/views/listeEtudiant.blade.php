@@ -12,7 +12,13 @@
             </div>
             @endif
             <br>
-            <a href="{{route('Ajouter')}}" class="btn btn-primary">Ajouter un etudiant</a>
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <a href="{{ route('Ajouter') }}" class="btn btn-primary mx-5">Ajouter un étudiant</a>
+                    <a href="{{ route('RechercheAfficher') }}" class="btn btn-primary mx-5">Rechercher</a>
+                </div>
+            </div>
+            
             <br>
             <table class="table"> 
                 <thead>
@@ -37,7 +43,7 @@
                         <td>{{$etudiant->niveau}}</td>
                         <td>
                             <a href="{{ route('Update', ['id' => $etudiant->id]) }}" class="btn btn-info">update</a>
-                            <a href="{{ route('Delete', ['id' => $etudiant->id]) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('Delete', ['id' => $etudiant->id]) }} "onclick="return confirm('Voulez-vous vraiment supprimer cet employé ?')" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                     @php

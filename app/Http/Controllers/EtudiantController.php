@@ -38,19 +38,26 @@ class EtudiantController extends Controller
     }
     public function verification_update(Request $request){
         $request->validate([
-            'nom'=>'required',
-            'prenom'=>'required',
-            'niveau'=>'required',
+            'nom' => 'required',
+            'prenom' => 'required',
+            'niveau' => 'required',
         ]);
+    
         $etudiant = Etudiant::find($request->id);
-        $etudiant->nom = $request->nom ;
-        $etudiant->prenom = $request->prenom ;
-        $etudiant->niveau = $request->niveau ;
-        
-        $etudiant->update();
-        return redirect()->route('Ajouter')->with('status','Etudiant est bien modifier avec succee');  
-
+    
+        // Vérifiez si les nouvelles valeurs sont différentes des anciennes
+        if ($etudiant->nom !== $request->nom || $etudiant->prenom !== $request->prenom || $etudiant->niveau !== $request->niveau) {
+            $etudiant->nom = $request->nom;
+            $etudiant->prenom = $request->prenom;
+            $etudiant->niveau = $request->niveau;
+            $etudiant->update();
+    
+            return redirect()->route('Ajouter')->with('status', 'Étudiant a été modifié avec succès');
+        } else {
+            return redirect()->route('Update', ['id' => $etudiant->id])->with('status', 'Aucune modification n\'a été apportée à l\'étudiant');
+         }
     }
+    
     public function DeleteEtudiant($id){
 
         $etudiant = Etudiant::find($id);
@@ -58,4 +65,21 @@ class EtudiantController extends Controller
         return redirect()->route('Liste')->with('status','Etudiant est bien supprimer avec succee');  
 
     }
+    public function rechercher(Request $request)
+    {
+        $recherche = $request->input('recherche');
+        // Effectuez la recherche des étudiants en fonction de la valeur de recherche
+        $etudiants = Etudiant::where('nom', 'like', '%' . $recherche . '%')
+                                ->orWhere('prenom', 'like', '%' . $recherche . '%')
+                                ->orWhere('niveau', 'like', '%' . $recherche . '%')
+                                ->get();
+    
+        return view('recherche', compact('etudiants'));
+    }
+    
+    public function rechercherAffiche(){
+        $etudiants =  Etudiant::all();
+        return view('recherche',compact('etudiants'));
+    }
+    
 }

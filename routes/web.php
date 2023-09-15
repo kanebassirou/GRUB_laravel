@@ -32,6 +32,13 @@ Route::get('/update-etudiant/{id}',[EtudiantController::class,'updateEtudiant'])
  Route::post('/update-etudiant/verification',[EtudiantController::class,'verification_update'])
           ->name('updateVerifier');
 Route::get('/delete-etudiant/{id}',[EtudiantController::class,'DeleteEtudiant'])
-          ->name('Delete');         
+          ->name('Delete');  
+// Route::get('/recherche', [EtudiantController::class,'rechercher'])->name('Rechercher');
+Route::post('/rechercher', [EtudiantController::class,'rechercher'])
+         ->name('Rechercher');
+Route::get('/rechercherAffiche', [EtudiantController::class,'rechercherAffiche'])
+         ->name('RechercheAfficher');
+
+       
           
 
