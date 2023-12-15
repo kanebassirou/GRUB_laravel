@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatagoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Home;
 use Illuminate\Support\Facades\Route;
@@ -42,11 +43,19 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/rechercherAffiche', [EtudiantController::class,'rechercherAffiche'])
 //          ->name('RechercheAfficher');
 
-     Route::get('/{nom}', [Home::class,'home']);
+     // Route::get('/{nom}', [Home::class,'home']);
     
      Route::prefix('admin')->group(function(){
           Route::resource('catagories',CatagoryController::class)
           ->except(['show'])->names('catagory.admin');
      });
+
+     // Route::prefix('admin')->group(function(){
+     //      Route::resource('products',ProductController::class)
+     //      ->names('product.admin');
+     // });
+
+     Route::resource('products',ProductController::class)->names('products');
+
           
 

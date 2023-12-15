@@ -24,7 +24,6 @@
         <a href="{{route('catagory.admin.index')}}" class="btn btn-secondary">
              Annuler la creation de nouvelle catégorie
         </a>
-    </div>
-
+    </div>  
 </form>
 @endsection

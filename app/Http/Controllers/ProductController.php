@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
+use App\Models\Catagory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -13,6 +15,9 @@ class ProductController extends Controller
     public function index()
     {
         //
+        $product = Product::orderby('id','desc')->paginate(12);
+        return view('product.index',compact('product'));
+        
     }
 
     /**
@@ -21,14 +26,25 @@ class ProductController extends Controller
     public function create()
     {
         //
+        $catagory = Catagory::all();
+        
+        return view('product.create',compact('catagory'));
+
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        
+        Product::create($request->validated());
+        return redirect()->route('product.index')
+        ->with('success', "Produit ajoutée avec succès");
+
+            
+     
     }
 
     /**
@@ -37,6 +53,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        return view('product.show', compact('product'));
+
     }
 
     /**

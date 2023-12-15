@@ -44,6 +44,7 @@ class CatagoryController extends Controller
     public function show(Catagory $catagory)
     {
         //
+        
     }
 
     /**
